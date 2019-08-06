@@ -30,7 +30,8 @@ var Sitemapper = require('sitemapper');
 
 var Google = new Sitemapper({
   url: 'https://www.google.com/work/sitemap.xml',
-  timeout: 15000 //15 seconds
+  timeout: 15000, //15 seconds
+  concurrentLimit: 7 //max 7 requests are allowed in parallel, defaults to 7
 });
 
 Google.fetch()
@@ -48,6 +49,7 @@ Google.fetch()
 var sitemapper = new Sitemapper();
 
 sitemapper.timeout = 5000;
+sitemapper.concurrentLimit = 7;
 sitemapper.fetch('http://wp.seantburke.com/sitemap.xml')
   .then(function (data) {
     console.log(data);
@@ -65,6 +67,7 @@ import Sitemapper from 'sitemapper';
 const Google = new Sitemapper({
   url: 'https://www.google.com/work/sitemap.xml',
   timeout: 15000, // 15 seconds
+  concurrentLimit: 7, //max 7 inflight parallel requests are allowed.
 });
 
 Google.fetch()
@@ -77,6 +80,7 @@ Google.fetch()
 
 const sitemapper = new Sitemapper();
 sitemapper.timeout = 5000;
+sitemapper.concurrentLimit = 7;
 
 sitemapper.fetch('http://wp.seantburke.com/sitemap.xml')
   .then(({ url, sites }) => console.log(`url:${url}`, 'sites:', sites))
